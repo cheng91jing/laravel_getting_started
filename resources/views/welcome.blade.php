@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Chen Laravel
+                    Laravel Getting Started
                 </div>
 
                 <div class="links">
