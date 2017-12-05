@@ -3,8 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Request;
-use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,8 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Request::setTrustedHeaderName(SymfonyRequest::HEADER_CLIENT_PORT,'HTTP_X_FORWARDED_PORT');
-        Request::setTrustedHeaderName(SymfonyRequest::HEADER_CLIENT_PROTO,'HTTP_X_FORWARDED_PROTO');
+        //
     }
 
     /**
