@@ -12,7 +12,7 @@ class TrustProxies extends Middleware
      *
      * @var array
      */
-    protected $proxies;
+    protected $proxies = '**';
 
     /**
      * The current proxy header mappings.
@@ -26,4 +26,20 @@ class TrustProxies extends Middleware
         Request::HEADER_X_FORWARDED_PORT => 'X_FORWARDED_PORT',
         Request::HEADER_X_FORWARDED_PROTO => 'X_FORWARDED_PROTO',
     ];
+
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    // public function handle($request, Closure $next)
+    // {
+    //     /**
+    //     * 修复在某些代理服务器上，如果未https，Laravel未检测到安全性，不能生成HTTPS链接
+    //     */
+    //     $request->setTrustedProxies([$request->getClientIp()]);
+    //     return $next($request);
+    // }
 }
