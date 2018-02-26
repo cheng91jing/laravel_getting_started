@@ -41,6 +41,11 @@ class User extends Authenticatable
         });
     }
 
+    public function statuses()
+    {
+        return $this->hasMany(Status::class);
+    }
+
     /**
     * 使用 Gravatar 来为用户提供个人头像支持。  https://en.gravatar.com/
     * Gravatar 为 “全球通用头像”，当你在 Gravatar 的服务器上放置了自己的头像后，
@@ -55,5 +60,15 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPassword($token));
+    }
+
+    /**
+    * 将当前用户发不过的所有微博从数据库中去除，并根据时间倒序，后面为用户增加关注人功能后，
+    * 在此处获取当前用户关注的人发不过的所有微博动态。
+    */
+    public function feed()
+    {
+        return $this->statuses()
+                        ->orderBy('created_at', 'desc');
     }
 }
